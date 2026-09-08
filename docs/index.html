@@ -173,6 +173,13 @@
   .notes .box { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px; }
   .notes p { font-size: 13px; color: var(--muted); line-height: 1.75; }
   .notes a { color: var(--cyan); }
+  .notes .box h3 { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--cyan); margin: 16px 0 8px; }
+  .notes .box h3:first-of-type { margin-top: 0; }
+  .notes ol, .notes ul { margin: 6px 0 12px 20px; }
+  .notes li { font-size: 13px; color: var(--muted); line-height: 1.75; margin-bottom: 5px; }
+  .notes b { color: var(--text); }
+  .notes ul li::marker { color: var(--cyan); }
+  .notes ol li::marker { color: var(--magenta); font-weight: 700; }
   .notes b { color: var(--text); }
 
   footer { margin-top: 54px; text-align: center; font-size: 11px; color: var(--dim); letter-spacing: .6px; line-height: 1.8; }
@@ -287,14 +294,37 @@
           <br><br>
           <b>Privacy.</b> This page only hosts ready-to-run installers. No analytics, no trackers
           — clicking a button downloads a file to your computer, nothing else.
-          <br><br>
-          <b>macOS shows a "damaged"/"unidentified developer" warning?</b> The app is unsigned
-          (no paid Apple certificate), not malicious. Open it once via
-          <b>right-click → Open → Open</b>, or System Settings → Privacy &amp; Security →
-          <b>"Open Anyway"</b>. To skip the warning entirely, install via Homebrew:
-          <code>brew install awssudiptapathak/autodj/autodj</code>. Windows may show a
-          similar SmartScreen prompt — click <b>More info → Run anyway</b>.
+          <br>
         </p>
+
+        <h3>First-run security prompts &amp; how to get past them</h3>
+
+        <h3>1 · Windows — SmartScreen</h3>
+        <ul>
+          <li>When launching the installer you may see <i>"Windows protected your PC"</i>. That's SmartScreen reacting to an unsigned exe — it's our own build, not a threat.</li>
+          <li>Click <b>More info</b> → <b>Run anyway</b>. That's a one-time approval for the file.</li>
+          <li>To never see it for Auto DJ again: <b>Windows Security → Virus &amp; threat protection → Manage settings → Exclusions</b> → add the Auto DJ install folder.</li>
+        </ul>
+
+        <h3>2 · macOS — DMG or ZIP</h3>
+        <ul>
+          <li>Open the DMG and drag <code>AutoDJ.app</code> into <b>Applications</b> (or unzip the ZIP and copy the app).</li>
+          <li>Gatekeeper may say <i>"unidentified developer"</i> or <i>"Apple cannot verify this app"</i>. The app is unsigned (no paid Apple certificate), not malicious.</li>
+          <li>Fix it one of these ways:
+            <ul>
+              <li><b>Right-click</b> <code>AutoDJ.app</code> → <b>Open</b> → click <b>Open</b>, or</li>
+              <li><b>System Settings → Privacy &amp; Security</b> → scroll to Security → <b>"Open Anyway"</b>, or</li>
+              <li>Terminal: <code>xattr -dr com.apple.quarantine "/Applications/AutoDJ.app"</code> then <code>open "/Applications/AutoDJ.app"</code>.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h3>3 · macOS — Homebrew (no prompts at all)</h3>
+        <ol>
+          <li>Install <b>Homebrew</b> (one-time) — <a href="https://brew.sh" target="_blank" rel="noopener">brew.sh</a>, or paste the installer command from that site in Terminal.</li>
+          <li>Then run: <code>brew install awssudiptapathak/autodj/autodj</code></li>
+          <li>Launch <b>Auto DJ</b> from Applications — it opens with <b>zero</b> warnings, because Homebrew never marks the file as quarantined.</li>
+        </ol>
       </div>
     </section>
 
