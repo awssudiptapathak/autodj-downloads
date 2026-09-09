@@ -186,6 +186,79 @@
   footer a { color: var(--muted); text-decoration: none; }
   footer a:hover { color: var(--cyan); }
 
+  /* ── v2.0 Beta announcement ── */
+  .announce {
+    margin: 30px auto 0; max-width: 860px; text-align: center;
+    position: relative; overflow: hidden;
+    background:
+      radial-gradient(600px 200px at 50% -20%, rgba(255,180,84,.28), transparent 70%),
+      linear-gradient(180deg, rgba(255,180,84,.14), rgba(255,180,84,.04));
+    border: 1px solid rgba(255,180,84,.45); border-radius: 18px;
+    padding: 26px 28px 24px;
+  }
+  .announce::after {
+    content: ""; position: absolute; inset: -50%; pointer-events: none;
+    background: conic-gradient(from 0deg, transparent 0 320deg, rgba(255,255,255,.06) 355deg, transparent 360deg);
+    animation: ring 9s linear infinite;
+  }
+  @keyframes ring { to { transform: rotate(360deg); } }
+  .announce .newribbon {
+    display: inline-flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 3px;
+    text-transform: uppercase; font-weight: 800; color: #1a0e00;
+    background: linear-gradient(120deg, #ffd79a, var(--amber) 55%, #ff8a3c);
+    border-radius: 999px; padding: 6px 16px; box-shadow: 0 6px 22px rgba(255,180,84,.35);
+    animation: pulse 2s infinite;
+  }
+  .announce .newribbon .bolt { font-size: 14px; }
+  .announce h2 {
+    margin: 16px 0 8px; font-size: 30px; letter-spacing: 1px; line-height: 1.15; color: #ffe7c2;
+  }
+  .announce h2 b { color: var(--amber); }
+  .announce .lede { font-size: 14px; color: var(--muted); line-height: 1.7; max-width: 640px; margin: 0 auto; }
+  .announce .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 16px; }
+  .announce .chips span {
+    font-size: 12px; color: #ffe0ae; background: rgba(255,180,84,.1);
+    border: 1px solid rgba(255,180,84,.35); border-radius: 999px; padding: 5px 12px;
+  }
+  .announce .cta-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 20px; }
+  .announce .cta {
+    display: inline-block; text-decoration: none; font-weight: 800; font-size: 14px;
+    letter-spacing: 1px; padding: 12px 22px; border-radius: 10px; color: #1a0e00;
+    background: linear-gradient(120deg, #ffd98a, var(--amber) 50%, #ff8a3c);
+    box-shadow: 0 8px 26px rgba(255,150,50,.4); transition: filter .15s ease, transform .15s ease;
+  }
+  .announce .cta:hover { filter: brightness(1.1); transform: translateY(-1px); }
+  .announce .cta.ghost {
+    color: var(--amber); background: transparent; border: 1px solid rgba(255,180,84,.5);
+    box-shadow: none;
+  }
+  .announce .cta.ghost:hover { background: rgba(255,180,84,.08); }
+
+  .card.beta { border-color: rgba(255,180,84,.35); }
+  .card.beta:hover { border-color: rgba(255,180,84,.7); box-shadow: var(--shadow), 0 0 0 1px rgba(255,180,84,.15); }
+  .card.beta .tag { color: var(--amber); border-color: rgba(255,180,84,.45); }
+  .card.beta .ico { background: rgba(255,180,84,.12); border: 1px solid rgba(255,180,84,.35); }
+  .card.beta svg { stroke: var(--amber); }
+  .card.beta .btn { background: linear-gradient(120deg, #ffb454, #e8862e); }
+  .card.beta .meta .pill.new { color: var(--amber); border-color: rgba(255,180,84,.45); background: rgba(255,180,84,.07); }
+
+  .beta-features { margin-top: 56px; background: linear-gradient(180deg, rgba(255,180,84,.05), transparent); }
+  .beta-features .rows { display: grid; gap: 10px; margin-top: 18px; }
+  .beta-features .row {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px;
+    font-size: 13px; color: var(--muted); line-height: 1.65;
+  }
+  .beta-features .row b { color: var(--amber); display: block; margin-bottom: 3px; letter-spacing: .5px; }
+  .beta-features .row ul { margin: 6px 0 0 18px; }
+  .beta-features .row li { font-size: 12.5px; color: var(--muted); line-height: 1.7; margin-bottom: 4px; }
+  .beta-features .row li::marker { color: var(--amber); }
+  .beta-features .req {
+    margin-top: 18px; background: rgba(255,180,84,.06); border: 1px dashed rgba(255,180,84,.5);
+    border-radius: 12px; padding: 14px 16px; font-size: 12.5px; color: var(--muted); line-height: 1.75;
+  }
+  .beta-features .req b { color: var(--amber); }
+  .beta-features .req code { color: var(--cyan); font-size: 12px; }
+
   @media (max-width: 720px) { .how { grid-template-columns: 1fr; } .logo { font-size: 40px; letter-spacing: 6px; } }
 </style>
 </head>
@@ -202,7 +275,7 @@
 
   <div class="wrap">
     <header>
-      <div class="eyebrow"><span class="dot"></span> Official distribution · v1.0.0</div>
+      <div class="eyebrow"><span class="dot"></span> Official distribution · Stable v1.0.0</div>
       <div class="hero">
         <div class="vinyl"><div class="disc"></div><div class="label"></div></div>
         <div class="hero-copy">
@@ -211,11 +284,30 @@
           <div class="version"><b>v1.0.0</b> · ready to download <span class="eq" style="height:12px"><span></span><span></span><span></span></span></div>
         </div>
       </div>
+      <div class="announce">
+        <span class="newribbon"><span class="bolt">✦</span> New · Auto DJ v2.0 Beta</span>
+        <h2>A <b>smarter</b> DJ. A <b>flashier</b> show.<br>Now <b>free</b> to download.</h2>
+        <p class="lede">The Beta of our biggest update yet — beat-synced mixing, an AI DJ voice,
+        YouTube auto-fetch, DMX lighting and a brand-new three-column console. Runs entirely on
+        your computer, upgrades over v1.0 in place, and keeps all your settings.</p>
+        <div class="chips">
+          <span>⚡ Beat-matched crossfades</span>
+          <span>🎬 YouTube auto-fetch</span>
+          <span>💡 DMX lighting</span>
+          <span>🎛️ 3-band EQ transitions</span>
+          <span>🌌 6 themes</span>
+        </div>
+        <div class="cta-row">
+          <a class="cta" href="https://github.com/awssudiptapathak/autodj-downloads/releases/download/v2.0.0-beta/AutoDJ-Setup-2.0.0-beta.exe">Download v2.0 Beta — Windows</a>
+          <a class="cta ghost" href="#v2features">See what's new</a>
+          <a class="cta ghost" href="https://github.com/awssudiptapathak/autodj-downloads/releases/download/v2.0.0-beta/AutoDJ-2.0.0-beta-mac.zip">Get it on macOS</a>
+        </div>
+      </div>
     </header>
 
     <section class="cards">
       <div class="card win">
-        <span class="tag">Recommended</span>
+        <span class="tag">Stable</span>
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5.5 11 4v7H3zM13 4l8-1.5V11h-8zM3 13h8v7l-8-1.5zM13 13h8v7.5L13 19z"/></svg></div>
         <h3>Windows Installer</h3>
         <p class="desc">Full setup wizard with Start Menu &amp; desktop shortcuts, plus a clean uninstaller.</p>
@@ -248,6 +340,90 @@
         <p class="desc">Classic disk-image installer for Macs — double-click, then drag the app across.</p>
         <div class="meta"><span class="pill">.dmg</span></div>
         <a class="btn mac" href="https://github.com/awssudiptapathak/autodj-downloads/releases/latest/download/AutoDJ-1.0.0-mac.dmg">Download DMG<small>macOS · drag &amp; drop to install</small></a>
+      </div>
+    </section>
+
+    <section class="cards">
+      <div class="card win beta">
+        <span class="tag">v2.0 Beta</span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5.5 11 4v7H3zM13 4l8-1.5V11h-8zM3 13h8v7l-8-1.5zM13 13h8v7.5L13 19z"/></svg></div>
+        <h3>Windows Installer · Beta</h3>
+        <p class="desc">Same wizard as stable, but with the v2.0 engine. Runs over an existing v1.0 install and upgrades it in place — your music &amp; settings are kept.</p>
+        <div class="meta"><span class="pill new">Beta</span><span class="pill">.exe</span></div>
+        <a class="btn" href="https://github.com/awssudiptapathak/autodj-downloads/releases/download/v2.0.0-beta/AutoDJ-Setup-2.0.0-beta.exe">Download v2.0 Beta<small>Windows 10/11 · upgrade-in-place</small></a>
+      </div>
+
+      <div class="card win beta">
+        <span class="tag">v2.0 Beta</span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 7v10l-9 5-9-5V7l9-5z"/><path d="m3.2 7 8.8 5 8.8-5"/><path d="m12 12-9 5M12 12l9 5"/></svg></div>
+        <h3>Portable ZIP · Beta</h3>
+        <p class="desc">Unzip anywhere and run <b><code>AutoDJ.exe</code></b> — the full v2.0 Beta with no installation at all.</p>
+        <div class="meta"><span class="pill new">Beta</span><span class="pill">.zip</span></div>
+        <a class="btn" href="https://github.com/awssudiptapathak/autodj-downloads/releases/download/v2.0.0-beta/AutoDJ-2.0.0-beta-portable.zip">Download v2.0 portable<small>Windows · no install</small></a>
+      </div>
+
+      <div class="card mac beta">
+        <span class="tag">v2.0 Beta</span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.8-1.3 2.7-1.7 4-1.2.3 1.1-.4 2.2-1.2 2.8C13.2 6 9 8 7 12a9 9 0 0 0 9 6c1.5.4 2.9 0 4-1 .3-1.6-1-2.8-2-3.8-1-.9-1.8-3.7-.4-6.1C18.9 6 17 4.3 15 3.6 14.3 3.3 12.8 3 12 3z"/></svg></div>
+        <h3>macOS · ZIP · Beta</h3>
+        <p class="desc">Drag the v2.0 <b>AutoDJ.app</b> into Applications (replaces the v1.0 app). Right-click → <b>Open</b> on first launch.</p>
+        <div class="meta"><span class="pill new">Beta</span><span class="pill">.zip</span></div>
+        <a class="btn mac" href="https://github.com/awssudiptapathak/autodj-downloads/releases/download/v2.0.0-beta/AutoDJ-2.0.0-beta-mac.zip">Download v2.0 Beta for macOS<small>macOS 11+ · drag to Applications</small></a>
+      </div>
+
+      <div class="card mac beta">
+        <span class="tag">v2.0 Beta</span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2"/></svg></div>
+        <h3>macOS · DMG · Beta</h3>
+        <p class="desc">Classic disk-image installer carrying the v2.0 Beta app for Macs.</p>
+        <div class="meta"><span class="pill new">Beta</span><span class="pill">.dmg</span></div>
+        <a class="btn mac" href="https://github.com/awssudiptapathak/autodj-downloads/releases/download/v2.0.0-beta/AutoDJ-2.0.0-beta-mac.dmg">Download v2.0 DMG<small>macOS · drag &amp; drop</small></a>
+      </div>
+    </section>
+
+    <section class="beta-features" id="v2features">
+      <h2 style="font-size:13px;letter-spacing:4px;text-transform:uppercase;color:var(--amber);text-align:center;">What's new in v2.0 Beta</h2>
+      <div class="rows">
+        <div class="row"><b>Professional mixing engine</b>
+          <ul>
+            <li>Beat-matched crossfades — the outgoing song is time-stretched to match the incoming BPM and dropped in on-beat.</li>
+            <li>3-band EQ shifts during every transition.</li>
+            <li>Energy-aware set ordering that raises and breathes the intensity across the night.</li>
+            <li>DJ techno intros and staged mix builds (next mix prepared while the current one plays).</li>
+          </ul>
+        </div>
+        <div class="row"><b>Auto folder scanning</b>
+          <ul>
+            <li>Watch a folder and auto-mix new files as they appear.</li>
+            <li>Auto-build toggle and build-on-launch option in the console.</li>
+          </ul>
+        </div>
+        <div class="row"><b>YouTube auto-fetch &amp; download manager</b>
+          <ul>
+            <li>Search &amp; auto-fetch requested tracks from YouTube.</li>
+            <li>Background download manager with progress and per-download actions (play / cue / delete).</li>
+            <li><b>Load to Library</b> imports every download straight into your song library.</li>
+            <li><b>Storage cap: 400 MB by default</b> — the oldest files are pruned automatically.</li>
+          </ul>
+        </div>
+        <div class="row"><b>DMX lighting control</b>
+          <ul>
+            <li>Live DMX-512 output (Enttec USB DMX Pro) plus an on-console simulation — lights dance to the track.</li>
+          </ul>
+        </div>
+        <div class="row"><b>Console &amp; UI</b>
+          <ul>
+            <li>Three-column layout: Song Library on the left, visualizer + queue in the middle, controls on the right.</li>
+            <li>Build progress shown above the queue, 6 visual themes, and cross-platform tooltips on every control.</li>
+            <li>Library fixes: larger rows, selection summary, and <code>.opus</code> track support.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="req">
+        <b>Storage requirements.</b> The v2.0 Beta YouTube download cache is capped at
+        <b>400 MB</b> by default (<code>yt_cache_limit_mb</code>) — old downloads are pruned
+        oldest-first automatically. Cache and settings live in <code>~/.autodj/</code>
+        (outside the app install), so upgrading from v1.0 keeps everything.
       </div>
     </section>
 
